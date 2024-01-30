@@ -18,6 +18,35 @@ struct binary_tree_s
 };
 
 typedef struct binary_tree_s binary_tree_t;
+/**
+ * struct queue_node_s - queue node
+ * @node: data
+ * @next: next node
+ */
+struct queue_node_s
+{
+	binary_tree_t *node;
+	struct queue_node_s *next;
+};
+
+typedef struct queue_node_s queue_node_t;
+/**
+ * struct queue_s - Queue DS
+ * @front: front node
+ * @rear: rear node
+ */
+struct queue_s
+{
+	queue_node_t *front;
+	queue_node_t *rear;
+};
+
+typedef struct queue_s queue_t;
+
+queue_t *queue_create();
+void queue_delete(queue_t *q);
+queue_node_t *queue_enqueue(queue_t *q, binary_tree_t *node);
+binary_tree_t *queue_dequeue(queue_t *q);
 
 void binary_tree_print(const binary_tree_t *);
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
@@ -39,5 +68,8 @@ int binary_tree_is_full(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
-
+binary_tree_t *binary_trees_ancestor(const binary_tree_t *first,
+		const binary_tree_t *second);
+int binary_tree_is_complete(const binary_tree_t *tree);
+void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int));
 #endif
